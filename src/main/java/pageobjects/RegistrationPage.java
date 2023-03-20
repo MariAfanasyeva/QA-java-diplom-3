@@ -3,6 +3,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selectors;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import static com.codeborne.selenide.Selenide.page;
@@ -27,36 +28,42 @@ public class RegistrationPage {
     //локатор для ошибки о Некорректном пароле
     @FindBy(how = How.XPATH, using = ".//p[text()='Некорректный пароль']")
     private SelenideElement passwordErrorValidateRegPage;
+
     //метод заполнения поля имя
     public void setNameFieldRegPage(String name) {
         nameFieldRegPage.setValue(name);
     }
+
     // метод заполнения поля email
     public void setEmailFieldRegPage(String email) {
         emailFieldRegPage.setValue(email);
     }
+
     // метод заполнения поля пароля
     public void setPasswordFieldRegPage(String password) {
         passwordFieldRegPage.setValue(password);
     }
+
     // метод клика по кнопке Зарегистрироваться
     public void clickRegInButton() {
         regButtonRegPage.click();
     }
 
-    // метод регистрации в приложении: объединяет ввод email, пароля и клик по кнопке
-    public void register(String name, String email, String password){
+    @Step("Регистрация в приложении: объединяет ввод email, пароля и клик по кнопке")
+    public void register(String name, String email, String password) {
         setNameFieldRegPage(name);
         setEmailFieldRegPage(email);
         setPasswordFieldRegPage(password);
         clickRegInButton();
     }
-    //метод для проверки что выводится информация о Некорректном пароле (обязательное минимальное количество символов должно соблюдаться)
-    public void checkUncorrectPassword(){
+
+    @Step("Проверка, что выводится информация о Некорректном пароле (обязательное минимальное количество символов должно соблюдаться)")
+    public void checkUncorrectPassword() {
         Selenide.$(Selectors.byXpath(".//p[text()='Некорректный пароль']")).shouldHave(Condition.exactText("Некорректный пароль"));
     }
-    //метод клика по линку Войти LoginPage
-    public LoginPage clickLoginLinkRegPage1(){
+
+    @Step("Клик по линку Войти LoginPage")
+    public LoginPage clickLoginLinkRegPage1() {
         loginLinkRegPage.click();
         return page(LoginPage.class);
     }

@@ -3,19 +3,18 @@ import io.qameta.allure.junit4.DisplayName;
 import org.junit.Before;
 import org.junit.Test;
 import pageobjects.*;
-
 import static com.codeborne.selenide.Selenide.open;
 
 public class LoginTest {
     @Before
-    public void browserSettings (){
+    public void browserSettings() {
         //Configuration.holdBrowserOpen = true; //если нужно НЕ закрывать браузер после теста, оставить эту сроку
         Configuration.startMaximized = true; //полноразмерное окно браузера
     }
 
     @Test
     @DisplayName("Проверка входа в систему по клику на Войти в аккаунт с главной страницы")
-    public void enterWithClickLoginButtonInMainPage(){
+    public void enterWithClickLoginButtonInMainPage() {
         MainPage mainPage = open("https://stellarburgers.nomoreparties.site",
                 MainPage.class);
         LoginPage loginPage = mainPage.clickLoginAccountButtonMainPage();
@@ -24,9 +23,10 @@ public class LoginTest {
         personalCabinetPage.clickExitButtonPersonalCabinetPage();
         mainPage.clickPersonalCabinetButtonMainPage();//убедились что из аккаунта успешно вышли тк иначе кнопка была бы "Оформить заказ"
     }
+
     @Test
     @DisplayName("Проверка входа через страницу Восстановления пароля по линку Войти")
-         public void enterWithLinkInResetPasswordPage() {
+    public void enterWithLinkInResetPasswordPage() {
         MainPage mainPage = open("https://stellarburgers.nomoreparties.site",
                 MainPage.class);
         LoginPage loginPage = mainPage.clickLoginAccountButtonMainPage();
@@ -39,9 +39,10 @@ public class LoginTest {
         personalCabinetPage.clickExitButtonPersonalCabinetPage();
         mainPage.clickPersonalCabinetButtonMainPage();//убедились что из аккаунта успешно вышли тк иначе кнопка была бы "Оформить заказ"
     }
+
     @Test
     @DisplayName("Проверка входа в систему с существующими логином и паролем со страницы Авторизации")
-            public void enterWithValidDataInLoginPage() {
+    public void enterWithValidDataInLoginPage() {
         MainPage mainPage = open("https://stellarburgers.nomoreparties.site",
                 MainPage.class);
         LoginPage loginPage = mainPage.clickLoginAccountButtonMainPage();
@@ -54,9 +55,10 @@ public class LoginTest {
         personalCabinetPage.clickExitButtonPersonalCabinetPage();
         mainPage.clickPersonalCabinetButtonMainPage();//убедились что из аккаунта успешно вышли тк иначе кнопка была бы "Оформить заказ"
     }
+
     @Test
     @DisplayName("Проверка входа через Личный кабинет")
-            public void enterWithPersonalCabinet() {
+    public void enterWithPersonalCabinet() {
         MainPage mainPage = open("https://stellarburgers.nomoreparties.site",
                 MainPage.class);
         PersonalCabinetPage loginPage = mainPage.clickPersonalCabinetButtonMainPage();//после этого шага я на логине

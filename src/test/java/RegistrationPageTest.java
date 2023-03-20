@@ -2,16 +2,19 @@ import com.codeborne.selenide.Configuration;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.Before;
 import org.junit.Test;
-import pageobjects.*;
+import pageobjects.LoginPage;
+import pageobjects.MainPage;
+import pageobjects.RegistrationPage;
 import static com.codeborne.selenide.Selenide.open;
 
 
 public class RegistrationPageTest {
     @Before
-    public void browserSettings (){
+    public void browserSettings() {
         //Configuration.holdBrowserOpen = true; //если нужно НЕ закрывать браузер после теста, оставить эту сроку
         Configuration.startMaximized = true; //полноразмерное окно браузера
     }
+
     @Test
     @DisplayName("Проверка ошибки для некорректного пароля менее 6 символов")
     public void registrationWithUnValidPassword() {

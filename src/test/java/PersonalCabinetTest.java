@@ -6,20 +6,20 @@ import org.junit.Test;
 import pageobjects.LoginPage;
 import pageobjects.MainPage;
 import pageobjects.PersonalCabinetPage;
-
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.url;
 
 public class PersonalCabinetTest {
     @Before
-    public void browserSettings (){
+    public void browserSettings() {
         //Configuration.holdBrowserOpen = true; //если нужно НЕ закрывать браузер после теста, оставить эту сроку
         Configuration.startMaximized = true; //полноразмерное окно браузера
     }
+
     @Test
     @DisplayName("Проверка перехода по клику в Личный Кабинет и выхода из аккаунта по кнопке «Выйти».")
-    public void checkClickExitButtonPersonalCabinetPageRedirectToLoginPage(){
+    public void checkClickExitButtonPersonalCabinetPageRedirectToLoginPage() {
         MainPage mainPage = open("https://stellarburgers.nomoreparties.site",
                 MainPage.class);
         LoginPage loginPage = mainPage.clickLoginAccountButtonMainPage();
@@ -27,11 +27,12 @@ public class PersonalCabinetTest {
         PersonalCabinetPage personalCabinetPage = mainPage.clickPersonalCabinetButtonMainPage();
         personalCabinetPage.clickExitButtonPersonalCabinetPage();
         loginPage.loginButtonLoginPage.shouldBe(visible);
-        Assert.assertTrue(url().equals("https://stellarburgers.nomoreparties.site/login"));//проверить на каком мы урле
+        Assert.assertEquals("https://stellarburgers.nomoreparties.site/login", url());//проверить на каком мы урле
     }
+
     @Test
     @DisplayName("Проверка перехода по клику в Личный Кабинет и из него на главную через клик по Лого")
-    public void checkRedirectBetweenPersonalCabinetAndLogo(){
+    public void checkRedirectBetweenPersonalCabinetAndLogo() {
         MainPage mainPage = open("https://stellarburgers.nomoreparties.site",
                 MainPage.class);
         LoginPage loginPage = mainPage.clickLoginAccountButtonMainPage();
